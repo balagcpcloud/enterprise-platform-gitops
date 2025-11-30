@@ -2,7 +2,7 @@ appName: enterprise-app
 
 image:
   repository: image-registry.openshift-image-registry.svc:5000/bala12121986-dev/enterprise-app
-  tag: "1.0.0"
+  tag: "latest"
   pullPolicy: IfNotPresent
 
 service:

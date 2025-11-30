@@ -1,0 +1,24 @@
+# This creates an ImageStream = place where our built images are stored
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: enterprise-app              # image name inside OpenShift registry
+  namespace: bala12121986-dev       # your project
+---
+# This defines HOW to build the image using our Dockerfile
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: enterprise-app-build        # build name
+  namespace: bala12121986-dev
+spec:
+  output:
+    to:
+      kind: ImageStreamTag          # send the built image to this ImageStream
+      name: enterprise-app:latest   # image tag = "latest"
+  source:
+    type: Binary                    # Jenkins will upload source files (app/)
+  strategy:
+    type: Docker                    # use Dockerfile from the source directory
+  triggers: []                      # no auto-triggers, only manual (or Jenkins)
+
